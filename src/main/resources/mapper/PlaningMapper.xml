@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mm.dao.PlaningDao">
+   <resultMap type="com.mm.entity.Planing" id="planingmap">
+     <id column="pid" property="pid"/>
+     <result column="startdate" property="startdate"/>
+     <result column="enddate" property="enddate"/>
+     <result column="plan" property="plan"/>
+     <result column="state" property="state"/> 
+   </resultMap>
+  
+  
+   <select id="selectPlan" resultMap="planingmap">
+        select * from planing where state ='1'
+   </select>
+   
+   <select id="selectById" resultType="com.mm.entity.Planing">
+        select * from planing where pid=#{pid}
+   </select>
+   
+   <update id="updatePlan" parameterType="com.mm.entity.Planing">
+     update planing <set>
+     <if test="startdate != null">
+        startdate = #{startdate,jdbcType=DATE},
+      </if>
+      <if test="enddate != null">
+        enddate = #{enddate,jdbcType=DATE},
+      </if>
+      <if test="plan != null">
+        plan = #{plan,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=VARCHAR},
+      </if>    
+     </set> 
+     where pid = #{pid,jdbcType=INTEGER}
+     
+   </update>
+   
+   <select id="selectSuccess" resultMap="planingmap">
+        select * from planing where state = '5'
+   </select>
+   
+   <select id="selectGiveup" resultMap="planingmap">
+        select * from planing where state = '2'
+   </select>
+   
+   <insert id="addPlan" parameterType="com.mm.entity.Planing">
+         insert into planing (startdate,enddate,plan,state) values
+         (
+             #{startdate,jdbcType=DATE},
+             #{enddate,jdbcType=DATE},
+             #{plan,jdbcType=VARCHAR},
+             #{state,jdbcType=VARCHAR}
+             
+         )
+       
+       
+   </insert>
+  
+</mapper>

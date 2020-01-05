@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mm.dao.DayfeeDao">
+   <resultMap type="com.mm.entity.Dayfee" id="dayfeemap">
+     <id column="date" property="date"/>
+     <result column="stuId" property="stuId"/>
+     <result column="fee" property="fee"/>
+     <result column="hour" property="hour"/> 
+   </resultMap>
+
+  
+   <select id="selectByDate" resultType="com.mm.entity.Dayfee">
+        select * from Dayfee where date = #{date}
+   </select>
+   
+   <select id="selectAll" resultMap="dayfeemap">
+        select * from Dayfee
+   </select>
+   
+   <insert id="addDayfee" parameterType="com.mm.entity.Dayfee">
+         insert into Dayfee (date,stuId,fee,hour) values
+         <foreach collection="daylist" item="day" index="index" separator=",">
+             (
+             #{day.date,jdbcType=DATE},
+             #{day.stuId,jdbcType=INTEGER},
+             #{day.fee,jdbcType=INTEGER},
+             #{day.hour,jdbcType=DOUBLE}
+             )
+         </foreach>
+       
+   </insert>
+  
+</mapper>

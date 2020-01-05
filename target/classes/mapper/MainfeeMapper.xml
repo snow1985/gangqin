@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mm.dao.MainfeeDao">
+
+  <resultMap type="com.mm.entity.Mainfee" id="mainfeemap">        
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="unitprice" jdbcType="INTEGER" property="unitprice"/>
+        <result column="surplushour" jdbcType="DOUBLE" property="surplushour"/>
+        <result column="surplusfee" jdbcType="INTEGER" property="surplusfee"/>
+        <result column="hishour" jdbcType="DOUBLE" property="hishour"/>
+        <result column="hisfee" jdbcType="DOUBLE" property="hisfee"/>
+        <result column="modifydate" jdbcType="DATE" property="modifydate"/>
+        <result column="state" jdbcType="VARCHAR" property="state"/>   
+   </resultMap>
+     
+
+  
+   <select id="selectById" resultType="com.mm.entity.Mainfee">
+        SELECT
+			b.id,
+			b.name,
+			b.unitprice,
+			b.surplushour,
+			b.surplusfee,
+			b.hishour,
+			b.hisfee,
+			b.modifydate,
+			b.state
+		FROM
+			mainfee b where b.id=#{id} and state='1'
+   </select>
+   
+   <select id="selectAll" resultMap="mainfeemap">
+        SELECT			
+			b.id,
+			b.name,
+			b.unitprice,
+			b.surplushour,
+			b.surplusfee,
+			b.hishour,
+			b.hisfee,
+			b.modifydate,
+			b.state
+		FROM
+			mainfee b where state='1'
+   </select>
+   
+   <insert id="addmainfee" parameterType="com.mm.entity.Mainfee">
+         insert into mainfee (
+         id,name,unitprice,surplushour,surplusfee,
+         hishour,hisfee,modifydate,state) values
+         (#{id,jdbcType=INTEGER},
+         (#{name,jdbcType=VARCHAR},
+          #{unitprice,jdbcType=INTEGER}, 
+          #{surplushour,jdbcType=DOUBLE}, 
+          #{surplusfee,jdbcType=INTEGER}, 
+          #{hishour,jdbcType=DOUBLE},
+          #{hisfee,jdbcType=DOUBLE},
+          #{modifydate,jdbcType=DATE},
+          #{state,jdbcType=VARCHAR})
+   </insert>
+  
+</mapper>
