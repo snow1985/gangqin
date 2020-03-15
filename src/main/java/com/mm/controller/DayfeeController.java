@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 public class DayfeeController {
     private Dayfeeservice dayfeeservice;
     public Msg getDayfee(String strDate){
-        s
+
           return Msg.success();
     }
 }
