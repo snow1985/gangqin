@@ -21,7 +21,7 @@ public class Payfee {
     /**
      * 缴费金额
      */
-    private Integer Increase;
+    private Integer increase;
     /**
      * 修改日期
      */
@@ -52,10 +52,10 @@ public class Payfee {
 		this.unitprice = unitprice;
 	}
 	public int getIncrease() {
-		return Increase;
+		return increase;
 	}
 	public void setIncrease(int increase) {
-		Increase = increase;
+		this.increase = increase;
 	}
 	public Date getDate() {
 		return date;

@@ -30,6 +30,15 @@
 		FROM
 			mainfee b where b.id=#{id} and state='1'
    </select>
+
+    <update id="updateMain" parameterType="com.mm.dto.MainfeeDto">
+        update mainfee set unitprice=#{unitprice},surplusfee=surplusfee+#{increase}
+               where id=#{id} and state='1'
+    </update>
+    <update id="updateMainfee" parameterType="INTEGER">
+        update mainfee set state='0'
+               where id=#{id} and state='1'
+    </update>
    
    <select id="selectAll" resultMap="mainfeemap">
         SELECT			
@@ -51,7 +60,7 @@
          id,name,unitprice,surplushour,surplusfee,
          hishour,hisfee,modifydate,state) values
          (#{id,jdbcType=INTEGER},
-         (#{name,jdbcType=VARCHAR},
+          #{name,jdbcType=VARCHAR},
           #{unitprice,jdbcType=INTEGER}, 
           #{surplushour,jdbcType=DOUBLE}, 
           #{surplusfee,jdbcType=INTEGER}, 

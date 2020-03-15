@@ -5,7 +5,7 @@ package com.mm.controller;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+
 
 
 
@@ -18,9 +18,9 @@ public class BaseController {
     public String week() {				
 		return "week";
 	}
-	@RequestMapping("/addStudent")
-    public String addStudent() {				
-		return "addStudent";
+	@RequestMapping("/student")
+    public String student() {
+		return "student";
 	}
 	@RequestMapping("/plan")
     public String plan() {				
@@ -34,4 +34,6 @@ public class BaseController {
     public String addfee() {				
 		return "addfee";
 	}
+	@RequestMapping("/weekplan")
+	public String weekplan(){return "weekplan";}
 }

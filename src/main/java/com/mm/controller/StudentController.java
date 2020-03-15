@@ -1,22 +1,17 @@
 package com.mm.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.validation.Valid;
-
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.mm.entity.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
-import com.mm.dto.StudentDto;
-import com.mm.entity.Student;
+
 import com.mm.service.StudentService;
 import com.mm.util.Msg;
 
+import java.util.List;
 
 
 @Controller
@@ -48,7 +43,7 @@ public class StudentController {
 	 */
     
     @ResponseBody
-    @RequestMapping(value = "/student")
+    @RequestMapping(value = "/stu",method = RequestMethod.POST)
     public Msg addStu(Student student) {
     	
     	service.addStudent(student);
@@ -58,15 +53,36 @@ public class StudentController {
   	  
     }
     @ResponseBody
-    @RequestMapping(value = "/selectstu")
-    public Msg selectStu(Student student) {
+    @RequestMapping(value = "/stu/{id}",method = RequestMethod.GET)
+    public Msg selectStu(@PathVariable("id")Integer id) {
     	
-    	Student stu = service.selectById(student.getId());
+    	Student stu = service.selectById(id);
     	
     	System.out.println(stu);
   	  return Msg.success().addMap("stu", stu);
   	  
     }
+	@ResponseBody
+	@RequestMapping(value = "/stus")
+	public Msg stuAll(@RequestParam(value = "pn",defaultValue = "1")Integer pn) {
+
+		List<Student> students = service.selectAll();
+
+		PageHelper.startPage(pn,10);
+		PageInfo<Student> pageInfo=new PageInfo<>(students,10);
+		return Msg.success().addMap("pageInfo", pageInfo);
+
+	}
+	@ResponseBody
+	@RequestMapping(value = "/stuss",method = RequestMethod.GET)
+	public Msg stusimAll() {
+
+		List<Student> students = service.selectAll();
+
+
+		return Msg.success().addMap("students", students);
+
+	}
 	
 	
 }

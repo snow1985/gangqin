@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mm.dao.WeekDao">
+
+  <resultMap type="com.mm.entity.Week" id="Weekmap">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="zjbs" jdbcType="VARCHAR" property="zjbs"/>
+        <result column="stime" jdbcType="VARCHAR" property="stime"/>
+        <result column="etime" jdbcType="VARCHAR" property="etime"/>
+   </resultMap>
+     
+
+  
+   <select id="selectByWeek" resultMap="Weekmap">
+        SELECT
+			id,
+			name,
+			zjbs,
+			stime,
+			etime
+		FROM
+			weekplan where id=#{id}
+   </select>
+
+
+   
+   <select id="selectAll" resultMap="Weekmap">
+        SELECT			
+			id,
+			name,
+			zjbs,
+			stime,
+			etime
+		FROM
+			weekplan
+   </select>
+   
+   <insert id="addWeek" parameterType="com.mm.entity.Week">
+         insert into Weekplan (
+         id,name,zjbs,stime,etime) values
+         (#{id,jdbcType=INTEGER},
+          #{name,jdbcType=VARCHAR},
+          #{zjbs,jdbcType=VARCHAR},
+          #{stime,jdbcType=VARCHAR},
+          #{etime,jdbcType=VARCHAR})
+   </insert>
+    <delete id="deleteWeek" parameterType="com.mm.entity.Week">
+        delete from weekplan
+        <where>
+            <if test="id != null">
+                id=#{id,jdbcType=INTEGER},
+            </if>
+        <if test="zjbs != null">
+            and zjbs=#{zjbs,jdbcType=VARCHAR},
+        </if>
+        <if test="stime != null">
+            and stime=#{stime,jdbcType=VARCHAR},
+        </if>
+        <if test="etime != null">
+            and etime=#{etime,jdbcType=VARCHAR},
+        </if>
+
+        </where>
+    </delete>
+  
+</mapper>

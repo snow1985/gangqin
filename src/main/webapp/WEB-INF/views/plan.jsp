@@ -10,7 +10,8 @@
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="Expires" content="0">
-      <meta http-equiv="kiben" content="no-cache">
+<meta http-equiv="kiben" content="no-cache">
+<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0" />
 <script type="text/javascript" src="${base_path}/static/js/jquery-3.4.1.min.js"></script>
 <link href="${base_path}/static/css/bootstrap.min.css" rel="stylesheet">
 <script src="${base_path}/static/js/bootstrap.min.js"></script>
@@ -134,7 +135,7 @@
 		<div class="row">
 			<div class="col-md-4 col-md-offset-8">
 				<button class="btn btn-primary" id="add_model">新增</button>
-				<button class="btn btn-danger" id="del_model">删除</button>
+				<button class="btn btn-danger" id="back_model" onclick="window.location.href='${base_path}/index.jsp'">返回</button>
 			</div>
 		</div>
 		<!-- 显示表格数据 -->
@@ -210,7 +211,7 @@
 				
 				var checkBoxTd = $("<td><input type='checkbox' class='check_item'/></td>");
 				var planIdTd = $("<td></td>").append(item.pid);
-				var planstartTd = $("<td></td>").append(item.startdate);
+				var planstartTd = $("<td></td>").append(item.age);
 				var planendTd = $("<td></td>").append(item.enddate);
 				var stateTd = $("<td></td>").append(item.state=='5'?"完成":"未完成");
 				var planTd = $("<td></td>").append(item.plan);

@@ -27,7 +27,7 @@
   <div class=".col-xs-12 .col-md-4 col-md-offset-3">
   <div class="text-center">
   <button type="button" class="btn btn-primary btn-lg btn-block"
-  onclick="window.location.href='${base_path}/addStudent.jsp'">学生信息</button>
+  onclick="window.location.href='${base_path}/student'">学生信息</button>
   </div>
   </div>
 </div>
@@ -58,6 +58,15 @@
 </button>
   </div>
   </div>
+</div>
+<div class="row">
+    <div class=".col-xs-12 .col-md-4 col-md-offset-3">
+        <div class="text-center">
+            <button type="button" class="btn btn-primary btn-lg btn-block"
+                    onclick="window.location.href='${base_path}/weekplan'">修改课表
+            </button>
+        </div>
+    </div>
 </div>
 </body>
 </html>

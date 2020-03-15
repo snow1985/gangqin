@@ -21,6 +21,17 @@ public class Stu_simple {
      *状态
      */
     private String state;
+
+
+	public Mainfee getMainFee() {
+		return mainFee;
+	}
+
+	public void setMainFee(Mainfee mainFee) {
+		this.mainFee = mainFee;
+	}
+
+	private Mainfee mainFee;
 	
 	public int getId() {
 		return id;
@@ -52,5 +63,6 @@ public class Stu_simple {
 	public void setState(String state) {
 		this.state = state;
 	}
+
 	
 }

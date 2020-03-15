@@ -33,8 +33,6 @@ public class Student {
 	 *备注
 	 */
 	private String bak;
-	
-	private Mainfee mainFee;
 
 	public Integer getId() {
 		return id;
@@ -100,11 +98,5 @@ public class Student {
 				+ Arrays.toString(photo) + ", information=" + information + ", bak=" + bak + "]";
 	}
 
-	public Mainfee getMainFee() {
-		return mainFee;
-	}
 
-	public void setMainFee(Mainfee mainFee) {
-		this.mainFee = mainFee;
-	}
 }

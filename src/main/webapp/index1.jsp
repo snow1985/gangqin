@@ -84,36 +84,9 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">员工添加</h4>
+        <h4 class="modal-title" id="myModalLabel">课程添加</h4>
       </div>
       <div class="modal-body">
-        <form class="form-horizontal">
-		  <div class="form-group">
-		    <label class="col-sm-2 control-label">empName</label>
-		    <div class="col-sm-10">
-		      <input type="text" name="ename" class="form-control" id="empName_add_input" placeholder="empName">
-		      <span class="help-block"></span>
-		    </div>
-		  </div>
-		  <div class="form-group">
-		    <label class="col-sm-2 control-label">email</label>
-		    <div class="col-sm-10">
-		      <input type="text" name="email" class="form-control" id="email_add_input" placeholder="email@atguigu.com">
-		     <span class="help-block"></span>
-              
-		    </div>
-		  </div>
-		  <div class="form-group">
-		    <label class="col-sm-2 control-label">gender</label>
-		    <div class="col-sm-10">
-		      <label class="radio-inline">
-				  <input type="radio" name="gender" id="gender1_add_input" value="m" checked="checked"> 男
-				</label>
-				<label class="radio-inline">
-				  <input type="radio" name="gender" id="gender2_add_input" value="f"> 女
-				</label>
-		    </div>
-		  </div>
 		  <div class="form-group">
 		    <label class="col-sm-2 control-label">deptName</label>
 		    <div class="col-sm-4">
@@ -206,14 +179,14 @@
 		 			 type:"GET",
 		 			 
 		 			success:function(result){
-		 				build_emps_table(result);
+		 				build_mains_table(result);
 		 				build_page_nav(result);
 		 				build_page_info(result)
 		 			 }
 			});
 	      }
 	      //向页面添加员工信息及样式
-	  	function build_emps_table(result){
+	  	function build_mains_table(result){
 	  		$("#emps_table tbody").empty();
 			var emps = result.extend.pageInfo.list;
 			$.each(emps,function(index,item){
@@ -352,7 +325,7 @@
     function getEmp(id) {
       $(id).empty();
         $.ajax({
-           url:"${base_path}/emp/"+id,
+           url:"${base_path}/main/"+id,
            type:"GET",
             success:function(result){
             	

@@ -6,12 +6,27 @@
      <result column="name" property="name"/>
      <result column="bak" property="bak"/>
      <result column="rate" property="rate"/> 
-     <result column="state" property="state"/> 
+     <result column="state" property="state"/>
+       <association property="mainFee" javaType="com.mm.entity.Mainfee">
+           <id column="id" jdbcType="INTEGER" property="id"/>
+           <result column="name" jdbcType="VARCHAR" property="name"/>
+           <result column="unitprice" jdbcType="INTEGER" property="unitprice"/>
+           <result column="surplushour" jdbcType="DOUBLE" property="surplushour"/>
+           <result column="surplusfee" jdbcType="INTEGER" property="surplusfee"/>
+           <result column="hishour" jdbcType="DOUBLE" property="hishour"/>
+           <result column="hisfee" jdbcType="DOUBLE" property="hisfee"/>
+           <result column="modifydate" jdbcType="DATE" property="modifydate"/>
+           <result column="state" jdbcType="VARCHAR" property="state"/>
+       </association>
    </resultMap>
 
   
    <select id="selectById" resultMap="stu_simplemap">
         select * from stu_simple where id =#{id}
+   </select>
+    <select id="selectAll" resultMap="stu_simplemap">
+        select a.id,a.name,a.bak,a.rate,a.state,b.unitprice,b.surplushour,b.surplusfee,b.hishour,hisfee from stu_simple a
+        left join mainfee b on a.id=b.id where a.state ='1' and a.id =#{id}
    </select>
    
    <select id="selectSuccess"  resultMap="stu_simplemap">

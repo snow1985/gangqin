@@ -10,19 +10,6 @@
      <result column="photo" jdbcType="BLOB" property="photo"/>
      <result column="information" jdbcType="VARCHAR" property="information"/>
      <result column="bak" jdbcType="VARCHAR" property="bak"/>
-     <association property="mainFee" javaType="com.mm.entity.Mainfee">
-        <id column="id" jdbcType="INTEGER" property="id"/>
-        <result column="name" jdbcType="VARCHAR" property="name"/>
-        <result column="unitprice" jdbcType="INTEGER" property="unitprice"/>
-        <result column="surplushour" jdbcType="DOUBLE" property="surplushour"/>
-        <result column="surplusfee" jdbcType="INTEGER" property="surplusfee"/>
-        <result column="hishour" jdbcType="DOUBLE" property="hishour"/>
-        <result column="hisfee" jdbcType="DOUBLE" property="hisfee"/>
-        <result column="modifydate" jdbcType="DATE" property="modifydate"/>
-        <result column="state" jdbcType="VARCHAR" property="state"/>
-     </association>
-     
-   
    </resultMap>
   
    <select id="selectById" resultMap="studentmap">
@@ -32,21 +19,10 @@
 			a.age,
 			a.address,
 			a.information,
-			a.bak,
-			b.id,
-			b.name,
-			b.unitprice,
-			b.surplushour,
-			b.surplusfee,
-			b.hishour,
-			b.hisfee,
-			b.modifydate,
-			b.state
+			a.bak
 		FROM
-			student a , mainfee b
+			student a
 		WHERE a.id=#{id}
-		    and  a.id =b.id
-			and b.state = '1'
    </select>
    
    <select id="selectAll" resultMap="studentmap">
@@ -56,20 +32,9 @@
 			a.age,
 			a.address,
 			a.information,
-			a.bak,
-			b.id,
-			b.name,
-			b.unitprice,
-			b.surplushour,
-			b.surplusfee,
-			b.hishour,
-			b.hisfee,
-			b.modifydate,
-			b.state
+			a.bak
 		FROM
-			student a , mainfee b
-		WHERE a.id =b.id
-			and b.state = '1'
+			student a
    </select>
    
    <insert id="addStudent" useGeneratedKeys="true" keyColumn="id" 
